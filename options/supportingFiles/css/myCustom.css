@@ -1,0 +1,410 @@
+input[type="email"],
+input[type="webhook"],
+input[type="password"],
+button[id="save"],
+button[type="submit"] {
+  display: block;
+  width: 80%;
+  height: auto;
+  /* font-size: 18px; */
+  text-align: left;
+  padding: 5px;
+  /* border: 2px solid #e7e7e7; */
+  /* border-radius: 3px; */
+  /* background: #2d3143;
+  border-color: #2d3143; */
+  /* margin: 10px auto 20px; */
+  /* transition: opacity 0.4s; */
+} 
+
+
+input[type="webhook2"] {
+  display: block;
+  width: 80%;
+  height: auto;
+  /* font-size: 18px; */
+  text-align: left;
+  padding: 5px;
+  /* border: 2px solid #e7e7e7; */
+  /* border-radius: 3px; */
+  background: #41444D;
+  border-color: #41444D;
+  color: #bdcadb;
+  /* margin: 10px auto 20px; */
+  /* transition: opacity 0.4s; */
+
+} 
+
+
+input[type="webhook2"]::placeholder {
+    /* color: rgba(255, 255, 255, 0.575); */
+    color: rgba(255, 255, 255, 0.575);
+
+    opacity: 1.0; /* Firefox */
+}
+
+fieldset[type="webhook3"] {
+
+    background: #292929;
+
+} 
+
+input[type="requiredWebhookInput"] {
+  padding: 5px;
+  width: 80%;
+}
+
+input[id="customButton"] {
+  padding: 5px;
+  font-size: 14px;
+}
+
+div[id="saveBar"] {
+  padding: 7px 0 0 7px;
+  height: 140px; 
+  width: 300px;
+  position: fixed;
+  /* left:0; */
+  top:0;
+}
+
+button[id="customButton2"] {
+  display: inline-block;
+  padding: 0.6em 1em;
+  border: 1px solid transparent;
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  background-color: hsl(216, 0%, 75%);
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 0.8;
+
+  border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f);
+
+}
+
+button[id="customButton2"]:hover {
+  opacity: 1.0;
+}
+
+input[id="customButton2"] {
+  padding: 0.6em 1em;
+  border: 1px solid transparent;
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  background-color: hsl(216, 0%, 75%);
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 0.8;
+
+  border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+
+}
+
+
+input[id="customButton2"]:hover {
+  opacity: 1.0;
+}
+
+button.custom.important {
+  border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f);
+  }
+
+button.custom.disabled,
+button.custom[disabled],
+button.custom.important.disabled,
+button.custom.important[disabled] {
+  border-color: #ddd #ddd hsl(36, 0%, 85%);
+  background-color: hsl(36, 0%, 72%);
+  background-image: linear-gradient(#f2f2f2, #dddddd);
+  color: #666;
+  opacity: 0.6;
+  pointer-events: none;
+  }
+
+  p[id="saveBar"] {
+    display: block;
+    /* text-align: center; */
+    /* margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px; */
+    /* padding: 5px; */
+    margin-left: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    /* margin-bottom: 5px; */
+
+    /* border-bottom: 1px solid red;    background-color: hsl(36, 0%, 72%); */
+
+  }
+
+.navbar {
+  overflow: hidden;
+  /* text-align: center; */
+  background-color: #1c1f2b;
+  /* background-color: white; */
+  position: fixed;
+  top: 0;
+  
+  width: 100%;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+/* label[id="backgroundLabel"] {
+
+} */
+
+.header7 {
+  position: absolute;
+  top:0;
+  /* scrolling out of view :-( */
+  z-index:2;
+  background-color:white;
+}
+
+.testContainer {
+  position:relative;
+  /* width:200px; */
+  height:200px;
+  background:gray;
+}
+
+.cont_elements {overflow-y:scroll; height:100%;}
+
+.element {
+  position: relative;
+  color: black;
+}
+
+/* .discordTestButton {
+  font-family:Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility}::placeholder,body,button,input,select,textarea{font-family:Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility}html:lang(ja) ::-webkit-input-placeholder,html:lang(ja) body,html:lang(ja) button,html:lang(ja) input,html:lang(ja) select,html:lang(ja) textarea,html:lang(ja-JP) ::-webkit-input-placeholder,html:lang(ja-JP) body,html:lang(ja-JP) button,html:lang(ja-JP) input,html:lang(ja-JP) select,html:lang(ja-JP) textarea{font-family:Whitney,Hiragino Sans,ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3,Hiragino Kaku Gothic ProN,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,Osaka,MS PGothic,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ja) ::-moz-placeholder,html:lang(ja) body,html:lang(ja) button,html:lang(ja) input,html:lang(ja) select,html:lang(ja) textarea,html:lang(ja-JP) ::-moz-placeholder,html:lang(ja-JP) body,html:lang(ja-JP) button,html:lang(ja-JP) input,html:lang(ja-JP) select,html:lang(ja-JP) textarea{font-family:Whitney,Hiragino Sans,ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3,Hiragino Kaku Gothic ProN,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,Osaka,MS PGothic,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ja) :-ms-input-placeholder,html:lang(ja) body,html:lang(ja) button,html:lang(ja) input,html:lang(ja) select,html:lang(ja) textarea,html:lang(ja-JP) :-ms-input-placeholder,html:lang(ja-JP) body,html:lang(ja-JP) button,html:lang(ja-JP) input,html:lang(ja-JP) select,html:lang(ja-JP) textarea{font-family:Whitney,Hiragino Sans,ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3,Hiragino Kaku Gothic ProN,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,Osaka,MS PGothic,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ja) ::placeholder,html:lang(ja) body,html:lang(ja) button,html:lang(ja) input,html:lang(ja) select,html:lang(ja) textarea,html:lang(ja-JP) ::placeholder,html:lang(ja-JP) body,html:lang(ja-JP) button,html:lang(ja-JP) input,html:lang(ja-JP) select,html:lang(ja-JP) textarea{font-family:Whitney,Hiragino Sans,ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3,Hiragino Kaku Gothic ProN,ãƒ¡ã‚¤ãƒªã‚ª,Meiryo,Osaka,MS PGothic,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ko) ::-webkit-input-placeholder,html:lang(ko) body,html:lang(ko) button,html:lang(ko) input,html:lang(ko) select,html:lang(ko) textarea{font-family:Whitney,Apple SD Gothic Neo,NanumBarunGothic,ë§‘ì€ ê³ ë”•,Malgun Gothic,Gulim,êµ´ë¦¼,Dotum,ë‹ì›€,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ko) ::-moz-placeholder,html:lang(ko) body,html:lang(ko) button,html:lang(ko) input,html:lang(ko) select,html:lang(ko) textarea{font-family:Whitney,Apple SD Gothic Neo,NanumBarunGothic,ë§‘ì€ ê³ ë”•,Malgun Gothic,Gulim,êµ´ë¦¼,Dotum,ë‹ì›€,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ko) :-ms-input-placeholder,html:lang(ko) body,html:lang(ko) button,html:lang(ko) input,html:lang(ko) select,html:lang(ko) textarea{font-family:Whitney,Apple SD Gothic Neo,NanumBarunGothic,ë§‘ì€ ê³ ë”•,Malgun Gothic,Gulim,êµ´ë¦¼,Dotum,ë‹ì›€,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(ko) ::placeholder,html:lang(ko) body,html:lang(ko) button,html:lang(ko) input,html:lang(ko) select,html:lang(ko) textarea{font-family:Whitney,Apple SD Gothic Neo,NanumBarunGothic,ë§‘ì€ ê³ ë”•,Malgun Gothic,Gulim,êµ´ë¦¼,Dotum,ë‹ì›€,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-CN) ::-webkit-input-placeholder,html:lang(zh-CN) body,html:lang(zh-CN) button,html:lang(zh-CN) input,html:lang(zh-CN) select,html:lang(zh-CN) textarea{font-family:Whitney,Microsoft YaHei New,å¾®è½¯é›…é»‘,Microsoft Yahei,Microsoft JhengHei,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-CN) ::-moz-placeholder,html:lang(zh-CN) body,html:lang(zh-CN) button,html:lang(zh-CN) input,html:lang(zh-CN) select,html:lang(zh-CN) textarea{font-family:Whitney,Microsoft YaHei New,å¾®è½¯é›…é»‘,Microsoft Yahei,Microsoft JhengHei,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-CN) :-ms-input-placeholder,html:lang(zh-CN) body,html:lang(zh-CN) button,html:lang(zh-CN) input,html:lang(zh-CN) select,html:lang(zh-CN) textarea{font-family:Whitney,Microsoft YaHei New,å¾®è½¯é›…é»‘,Microsoft Yahei,Microsoft JhengHei,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-CN) ::placeholder,html:lang(zh-CN) body,html:lang(zh-CN) button,html:lang(zh-CN) input,html:lang(zh-CN) select,html:lang(zh-CN) textarea{font-family:Whitney,Microsoft YaHei New,å¾®è½¯é›…é»‘,Microsoft Yahei,Microsoft JhengHei,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-HK) ::-webkit-input-placeholder,html:lang(zh-HK) body,html:lang(zh-HK) button,html:lang(zh-HK) input,html:lang(zh-HK) select,html:lang(zh-HK) textarea,html:lang(zh-TW) ::-webkit-input-placeholder,html:lang(zh-TW) body,html:lang(zh-TW) button,html:lang(zh-TW) input,html:lang(zh-TW) select,html:lang(zh-TW) textarea{font-family:Whitney,Microsoft JhengHei,å¾®è»Ÿæ­£é»‘é«”,Microsoft JhengHei UI,Microsoft YaHei,å¾®è»Ÿé›…é»‘,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-HK) ::-moz-placeholder,html:lang(zh-HK) body,html:lang(zh-HK) button,html:lang(zh-HK) input,html:lang(zh-HK) select,html:lang(zh-HK) textarea,html:lang(zh-TW) ::-moz-placeholder,html:lang(zh-TW) body,html:lang(zh-TW) button,html:lang(zh-TW) input,html:lang(zh-TW) select,html:lang(zh-TW) textarea{font-family:Whitney,Microsoft JhengHei,å¾®è»Ÿæ­£é»‘é«”,Microsoft JhengHei UI,Microsoft YaHei,å¾®è»Ÿé›…é»‘,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-HK) :-ms-input-placeholder,html:lang(zh-HK) body,html:lang(zh-HK) button,html:lang(zh-HK) input,html:lang(zh-HK) select,html:lang(zh-HK) textarea,html:lang(zh-TW) :-ms-input-placeholder,html:lang(zh-TW) body,html:lang(zh-TW) button,html:lang(zh-TW) input,html:lang(zh-TW) select,html:lang(zh-TW) textarea{font-family:Whitney,Microsoft JhengHei,å¾®è»Ÿæ­£é»‘é«”,Microsoft JhengHei UI,Microsoft YaHei,å¾®è»Ÿé›…é»‘,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}html:lang(zh-HK) ::placeholder,html:lang(zh-HK) body,html:lang(zh-HK) button,html:lang(zh-HK) input,html:lang(zh-HK) select,html:lang(zh-HK) textarea,html:lang(zh-TW) ::placeholder,html:lang(zh-TW) body,html:lang(zh-TW) button,html:lang(zh-TW) input,html:lang(zh-TW) select,html:lang(zh-TW) textarea{font-family:Whitney,Microsoft JhengHei,å¾®è»Ÿæ­£é»‘é«”,Microsoft JhengHei UI,Microsoft YaHei,å¾®è»Ÿé›…é»‘,å®‹ä½“,SimSun,Helvetica Neue,Helvetica,Arial,sans-serif}a,button,div,input,select,span,strong,textarea{outline:0}img[alt]{text-indent:-9999px}.keyboard-mode button:focus,.keyboard-mode div:focus,.keyboard-mode input:focus,.keyboard-mode select:focus,.keyboard-mode span:focus,.keyboard-mode textarea:focus{-webkit-box-shadow:0 0 0 3px #00b0f4,0 0 10px #00b0f4;box-shadow:0 0 0 3px #00b0f4,0 0 10px #00b0f4;-webkit-transition:-webkit-box-shadow 0s ease .15s;transition:-webkit-box-shadow 0s ease .15s;transition:box-shadow 0s ease .15s;transition:box-shadow 0s ease .15s,-webkit-box-shadow 0s ease .15s}.keyboard-mode a:focus{outline:var(--text-link) auto 5px;-webkit-transition:outline 0s ease .15s;transition:outline 0s ease .15s}@supports (-moz-appearance:none){.keyboard-mode a:focus{outline:0;-webkit-box-shadow:0 0 0 3px #00b0f4,0 0 10px #00b0f4;box-shadow:0 0 0 3px #00b0f4,0 0 10px #00b0f4;-webkit-transition:-webkit-box-shadow 0s ease .15s;transition:-webkit-box-shadow 0s ease .15s;transition:box-shadow 0s ease .15s;transition:box-shadow 0s ease .15s,-webkit-box-shadow 0s ease .15s}};
+} */
+
+.discordStyledButton {
+  /* color: white; */
+  /* background-color: #7289da; */
+
+  color: #fff;
+  background-color: #43b581;
+
+  display: inline-block;
+  padding: 0.6em 1em;
+  border: 1px solid transparent;
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  /* background-color: hsl(216, 0%, 75%); */
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 1.0;
+  /* border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f); */
+  /* padding: 2px 16px; */
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.discordStyledButton:hover {
+  opacity: 0.8;
+}
+
+.discordStyledButton2 {
+  color: white;
+  background-color: #7289da;
+
+  /* color: #fff; */
+  /* background-color: #43b581; */
+
+  display: inline-block;
+  padding: 0.6em 1em;
+  border: 1px solid transparent;
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  /* background-color: hsl(216, 0%, 75%); */
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 1.0;
+  /* border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f); */
+  /* padding: 2px 16px; */
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.discordStyledButton2:hover {
+  opacity: 1.0;
+  background-color: #8ea1e1;
+}
+
+.discordStyledButton3 {
+  color: white;
+  background-color: #7289da;
+
+  /* color: #fff; */
+  /* background-color: #43b581; */
+
+  display: inline-block;
+  padding: 0.6em 1em;
+  border: 1px solid transparent;
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  /* background-color: hsl(216, 0%, 75%); */
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 1.0;
+  /* border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f); */
+  /* padding: 2px 16px; */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.discordStyledButton3:hover {
+  opacity: 0.8;
+  /* background-color: #8ea1e1; */
+}
+
+.discordStyledButton3:disabled {
+  opacity: 0.3;
+}
+
+/*  */
+/*  */
+/*  */
+
+.discordStyledResetButtonAligner {
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+
+.discordStyledResetButton {
+  color: #f04747;
+  border-color: rgba(240,71,71,.3);
+  /* background-color: #7289da; */
+  background: transparent;
+  /* color: #fff; */
+  /* background-color: #43b581; */
+
+  display: inline-block;
+  /* float: center; */
+  padding: 0.6em 1em;
+
+  border-width: 1px;
+  border-style: solid;
+
+  /* border: 1px; */
+  /* border-color: #ccc #ccc #bbb #bbb; */
+  border-radius: 3px;
+  /* background-color: hsl(216, 0%, 75%); */
+  /* background-image: linear-gradient(#f2f2f2, #dddddd); */
+  background-repeat: repeat-x;
+  /* color: #000; */
+  opacity: 1.0;
+  /* border-color: #ffcc7f #ffcc7f hsl(36, 100%, 73%);
+  background-color: hsl(36, 100%, 75%);
+  background-image: linear-gradient(#ffdca8, #ffcc7f); */
+  /* padding: 2px 16px; */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.discordStyledResetButton:hover {
+  opacity: 0.8;
+  /* background-color: #8ea1e1; */
+}
+
+.discordStyledResetButton:disabled {
+  opacity: 0.3;
+}
+
+input.pw {
+  -webkit-text-security: disc;
+}
+
+.disabled {
+  opacity: 0.6;
+}
+
+.radioInput {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+.customHeader {
+  margin-top: 50em;
+  margin-bottom: 0em;
+}
+
+[id="editButton"] {
+  color: #3eb1d0;
+  /* margin: 0; */
+  /* position: absolute; */
+  top: 50%;
+  /* -ms-transform: translateY(-50%); */
+  /* transform: translateY(-50%); */
+  font-size: 16px;
+  /* height: auto; */
+  padding: 15px;
+}
+
+[id="editButton"]:hover {
+  opacity: 0.7;
+  cursor: pointer;
+
+}
+
+.divWrapperTest {
+  display: flex;
+  align-items: center;
+}
+
+input[id="headerInputDiv"] {
+  /* opacity: 0.5; */
+  font-size: 32px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  /* margin: 21.44; */
+  margin: .67em 0;
+  margin-top: 0.67em;
+  margin-right: 0px;
+  margin-bottom: 0.67em;
+  margin-left: 0px;
+  margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
