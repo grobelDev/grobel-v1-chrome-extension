@@ -1,7 +1,7 @@
 {
   "name": "Grobel - Send Screenshots to Discord (No Bot)",
   "version": "1.0.4",
-  "description": "Send Screenshots to Discord with a Single Button.",
+  "description": "Send Screenshots to Discord with a Single Button!",
   "background": {
     "scripts": ["background.js"]
   },
