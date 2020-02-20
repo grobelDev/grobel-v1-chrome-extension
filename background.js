@@ -1,134 +1,128 @@
-chrome.browserAction.onClicked.addListener(function (tab) { grobelMainV5(true) });
+chrome.browserAction.onClicked.addListener(function(tab) {
+  grobelMainV5(true);
+});
 
 // Auto-Grobel Settings (this is what causes the errors)
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // Check to see if the Page has loaded.
   if (changeInfo.status == 'complete' && tab.active === true) {
-
     // Delay for Grobel.
     var delayInMilliseconds = 1250; //1 second
 
-    setTimeout(function () {
+    setTimeout(function() {
       grobelMainV5(false);
       // grobelAuto();
     }, delayInMilliseconds);
   }
 });
 
-
-
 // Helper Functions
 function grobelMainV5(grobelManualBool) {
-
   // 1. Get current Tab Url
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.storage.sync.get({
-      webhookDataArray: '',
-    }, function (items) {
-      if (items.webhookDataArray !== '') {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.storage.sync.get(
+      {
+        webhookDataArray: ''
+      },
+      function(items) {
+        if (items.webhookDataArray !== '') {
+          // 2. Check to see if webhook data is valid
+          let objectArray = items.webhookDataArray;
+          var objectArrayMailbox = [];
 
-        // 2. Check to see if webhook data is valid
-        let objectArray = items.webhookDataArray;
-        var objectArrayMailbox = [];
+          // alert(globalObject.filteringOptionsRadio);
 
-        // alert(globalObject.filteringOptionsRadio);
+          Object.keys(objectArray).forEach(key => {
+            // URL Setup
+            let tabUrl = tabs[0].url;
 
-        Object.keys(objectArray).forEach(key => {
+            // Global Settings Setup
+            let globalObject = objectArray[0];
 
-          // URL Setup
-          let tabUrl = tabs[0].url
+            // Specific Webhook Setup
+            let object = objectArray[key];
+            let webhookUrl = object['webhookAddressInput'];
+            let autoGrobelValue = object['autoGrobelRadio'];
 
-          // Global Settings Setup
-          let globalObject = objectArray[0];
-
-          // Specific Webhook Setup
-          let object = objectArray[key];
-          let webhookUrl = object["webhookAddressInput"];
-          let autoGrobelValue = object["autoGrobelRadio"];
-
-
-          if (grobelManualBool) {
-            if (autoGrobelValue === 'Disabled') {
-              validityMain();
+            if (grobelManualBool) {
+              if (autoGrobelValue === 'Disabled') {
+                validityMain();
+              }
+            } else {
+              if (autoGrobelValue === 'Enabled') {
+                validityMain();
+              }
             }
-          } else {
-            if (autoGrobelValue === 'Enabled') {
-              validityMain();
-            }
-          }
 
+            // Helper Functions
 
-          // Helper Functions
-
-          // Order is 1. Global -> 2. Specific
-          function validityMain() {
-            // 1. Global
-            if (webhookUrl !== '') {
-              if (checkUrlValidity(tabUrl, globalObject)) {
-                // 2. Specific
-                if (checkUrlValidity(tabUrl, object)) {
-                  objectArrayMailbox.push(object);
+            // Order is 1. Global -> 2. Specific
+            function validityMain() {
+              // 1. Global
+              if (webhookUrl !== '') {
+                if (checkUrlValidity(tabUrl, globalObject)) {
+                  // 2. Specific
+                  if (checkUrlValidity(tabUrl, object)) {
+                    objectArrayMailbox.push(object);
+                  }
                 }
               }
             }
-          }
 
-          function checkUrlValidity(url, _object) {
+            function checkUrlValidity(url, _object) {
+              let filteringOptionsRadio = _object.filteringOptionsRadio;
+              let blacklistInput = _object.blacklistInput;
+              let whitelistInput = _object.whitelistInput;
 
-            let filteringOptionsRadio = _object.filteringOptionsRadio;
-            let blacklistInput = _object.blacklistInput;
-            let whitelistInput = _object.whitelistInput;
-
-            if (filteringOptionsRadio === "None") {
-              return true;
-            } else if (filteringOptionsRadio === "Whitelist") {
-              return checkIfUrlContains(url, whitelistInput);
-            } else if (filteringOptionsRadio === "Blacklist") {
-              return !checkIfUrlContains(url, blacklistInput);
-            } else {
-              return false;
+              if (filteringOptionsRadio === 'None') {
+                return true;
+              } else if (filteringOptionsRadio === 'Whitelist') {
+                return checkIfUrlContains(url, whitelistInput);
+              } else if (filteringOptionsRadio === 'Blacklist') {
+                return !checkIfUrlContains(url, blacklistInput);
+              } else {
+                return false;
+              }
             }
-          }
 
-          function checkIfUrlContains(url, list) {
-            if (list !== '') {
-              let result = false;
+            function checkIfUrlContains(url, list) {
+              if (list !== '') {
+                let result = false;
 
-              list.split(' ').forEach(item => {
-                if (url.includes(item)) {
-                  result = true;
-                }
-              });
+                list.split(' ').forEach(item => {
+                  if (url.includes(item)) {
+                    result = true;
+                  }
+                });
 
-              return result;
-            } else {
-              return false;
+                return result;
+              } else {
+                return false;
+              }
             }
-          }
-
-        });
-
-        // There is at least one Webhook to send!
-        if (objectArrayMailbox.length > 0) {
-          chrome.tabs.captureVisibleTab(null, { format: 'png' }, function (screen) {
-
-            // Prepare the Data Payload
-            var data = dataPayloadV2(screen, tabs[0]);
-
-            // Send to Necessary Locations
-            Object.keys(objectArrayMailbox).forEach(key => {
-
-              let object = objectArrayMailbox[key];
-              let webhookUrl = object["webhookAddressInput"];
-
-              // Sending to Discord
-              sendDataToDiscordV2(data, webhookUrl);
-            });
           });
+
+          // There is at least one Webhook to send!
+          if (objectArrayMailbox.length > 0) {
+            chrome.tabs.captureVisibleTab(null, { format: 'png' }, function(
+              screen
+            ) {
+              // Prepare the Data Payload
+              var data = dataPayloadV2(screen, tabs[0]);
+
+              // Send to Necessary Locations
+              Object.keys(objectArrayMailbox).forEach(key => {
+                let object = objectArrayMailbox[key];
+                let webhookUrl = object['webhookAddressInput'];
+
+                // Sending to Discord
+                sendDataToDiscordV2(data, webhookUrl);
+              });
+            });
+          }
         }
       }
-    });
+    );
   });
 
   function dataPayloadV2(screen, tabObj) {
@@ -144,105 +138,110 @@ function grobelMainV5(grobelManualBool) {
     let contentString = tabObj.title;
 
     let embedJSON = {
-      "avatar_url": tabObj.favIconUrl,
-      "content": "**" + String(tabObj.title) + "**",
-      "embeds": [{
-        "description": descriptionString,
-        "image": {
-          "url": "attachment://screenshot.png"
+      avatar_url: tabObj.favIconUrl,
+      content: '**' + String(tabObj.title) + '**',
+      embeds: [
+        {
+          description: descriptionString,
+          image: {
+            url: 'attachment://screenshot.png'
+          }
         }
-      }]
-    }
-    data.append("payload_json", JSON.stringify(embedJSON));
+      ]
+    };
+    data.append('payload_json', JSON.stringify(embedJSON));
 
     return data;
   }
 
   function sendDataToDiscordV2(data, webhookUrl) {
-
     document.cookie = 'cross-site-cookie=discordapp.com; SameSite=None; Secure';
 
     var xhr = new XMLHttpRequest();
 
-    xhr.addEventListener("readystatechange", function () {
+    xhr.addEventListener('readystatechange', function() {
       if (this.readyState === 4) {
         console.log(this.responseText);
       }
     });
-    xhr.open("POST", webhookUrl);
+    xhr.open('POST', webhookUrl);
     xhr.send(data);
   }
 }
 
-
 // Other Helper Functions
 
 function dataURLtoFile(dataurl, filename) {
-  var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+  var arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
   return new File([u8arr], filename, { type: mime });
 }
 
+chrome.storage.sync.get(
+  {
+    currentPage: -1,
+    webhookDataArray: ''
+  },
+  function(items) {}
+);
 
-chrome.storage.sync.get({
-  currentPage: -1,
-  webhookDataArray: ''
-
-}, function (items) {
-})
-
-// 
-// 
+//
+//
 // On First Install
-chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason == "install") {
+chrome.runtime.onInstalled.addListener(function(details) {
+  if (details.reason == 'install') {
     // alert("This is a first install!");
-    chrome.storage.sync.get({
-      currentNavScroll: 0,
-      currentPage: 1000,
-      webhookDataArray: webhookObjectArrayInit(),
-      extraNavigationObjects: extraNavigationInit()
+    chrome.storage.sync.get(
+      {
+        currentNavScroll: 0,
+        currentPage: 1000,
+        webhookDataArray: webhookObjectArrayInit(),
+        extraNavigationObjects: extraNavigationInit()
+      },
+      function(items) {
+        let currentNavScroll = 0;
+        let currentPage = items.currentPage;
+        let webhookDataArray = items.webhookDataArray;
+        let extraNavigationObjects = items.extraNavigationObjects;
 
-    }, function (items) {
-      let currentNavScroll = 0;
-      let currentPage = items.currentPage;
-      let webhookDataArray = items.webhookDataArray;
-      let extraNavigationObjects = items.extraNavigationObjects;
-
-      chrome.storage.sync.set({
-        currentNavScroll: currentNavScroll,
-        currentPage: currentPage,
-        webhookDataArray: webhookDataArray,
-        extraNavigationObjects: extraNavigationObjects
-      }, function () {
-        // var newURL = "http://stackoverflow.com/";
-        // chrome.tabs.create({ url: newURL });
-        chrome.runtime.openOptionsPage();
-        // console.log(items.webhookDataArray);
-      });
-
-    });
-
-
-
-
-  } else if (details.reason == "update") {
+        chrome.storage.sync.set(
+          {
+            currentNavScroll: currentNavScroll,
+            currentPage: currentPage,
+            webhookDataArray: webhookDataArray,
+            extraNavigationObjects: extraNavigationObjects
+          },
+          function() {
+            // var newURL = "http://stackoverflow.com/";
+            // chrome.tabs.create({ url: newURL });
+            chrome.runtime.openOptionsPage();
+            // console.log(items.webhookDataArray);
+          }
+        );
+      }
+    );
+  } else if (details.reason == 'update') {
     var thisVersion = chrome.runtime.getManifest().version;
     // alert("Updated from " + details.previousVersion + " to " + thisVersion + "!");
   }
 
   function webhookObjectArrayInit() {
-
     let webhookObjectArray = {};
     webhookObjectArray[0] = createNewGlobalSettingsObject(0);
 
-    Array(40).fill().map((x, i) => i).forEach(notNum => {
-      let num = notNum + 1;
-      webhookObjectArray[num] = createNewWebhookObject(num);
-    });
+    Array(40)
+      .fill()
+      .map((x, i) => i)
+      .forEach(notNum => {
+        let num = notNum + 1;
+        webhookObjectArray[num] = createNewWebhookObject(num);
+      });
 
     return webhookObjectArray;
   }
@@ -255,8 +254,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
       whitelistInput: '',
       blacklistInput: '',
       autoGrobelRadio: 'Disabled',
-      name: "Global Settings",
-      defaultName: "Global Settings"
+      name: 'Global Settings',
+      defaultName: 'Global Settings'
     };
     return obj;
   }
@@ -269,8 +268,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
       whitelistInput: '',
       blacklistInput: '',
       autoGrobelRadio: 'Disabled',
-      name: "Webhook " + String(_id),
-      defaultName: "Webhook " + String(_id)
+      name: 'Webhook ' + String(_id),
+      defaultName: 'Webhook ' + String(_id)
     };
     return obj;
   }
@@ -278,8 +277,14 @@ chrome.runtime.onInstalled.addListener(function (details) {
   function extraNavigationInit() {
     let extraNavigationObjects = {};
 
-    extraNavigationObjects[1000] = createExtraNavigationObject(1000, "Getting Started");
-    extraNavigationObjects[1001] = createExtraNavigationObject(1001, "Upgrading to Premium");
+    extraNavigationObjects[1000] = createExtraNavigationObject(
+      1000,
+      'Getting Started'
+    );
+    extraNavigationObjects[1001] = createExtraNavigationObject(
+      1001,
+      'Upgrading to Premium'
+    );
     // extraNavigationObjects[1002] = createExtraNavigationObject(1002, "Global Settings");
 
     return extraNavigationObjects;
@@ -297,12 +302,11 @@ chrome.runtime.onInstalled.addListener(function (details) {
       return obj;
     }
   }
-
 });
 
-// 
-// 
-// 
+//
+//
+//
 
 // function whiteBlackUrlChecker(url, webhook, whitelist, blacklist) {
 
@@ -328,7 +332,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 //       return false;
 //     }
 
-//     // Blacklist Stuff  
+//     // Blacklist Stuff
 //   } else if (testBlacklist !== '') {
 
 //     let blacklistResult = false;
@@ -404,7 +408,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 //       return false;
 //     }
 
-//     // Blacklist Stuff  
+//     // Blacklist Stuff
 //   } else if (testBlacklist !== '') {
 
 //     let blacklistResult = false;
@@ -436,9 +440,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 //       return true;
 //     }
 
-
 //   }
 
 //   return true;
 // }
-
